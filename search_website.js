@@ -16,6 +16,7 @@ function ajaxCall(url){
 	if(data){
 	  clean(document.getElementById("results"));
 	  clean(document.getElementById("navigation"));
+	  clean(document.getElementById("count"));
 	}
 	$.ajax({
       dataType: "json",
@@ -28,7 +29,7 @@ function ajaxCall(url){
 //displays the results of the search
 function display(result){
   data = result;
-  document.getElementById("count").innerHTML += data._total;
+  document.getElementById("count").innerHTML += "Total Results: "+data._total;
   setUpNav(data._links);
   for(var i=0; i<data.streams.length; i++){
 	var stream = data.streams[i];
@@ -64,7 +65,7 @@ function setUpNav(links){
   if(links.next){
 	var next = document.createElement("button");
 	next.text = "next";
-	//next.onclick = ajaxCall(links.next);
+	next.onclick = function(){ajaxCall(links.next)};
 	document.getElementById("navigation").appendChild(next);
   }
 }
