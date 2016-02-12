@@ -58,13 +58,13 @@ function setUpNav(links){
   if(links.prev){
 	var prev = document.createElement("button");
 	prev.text = "prev";
-	prev.onclick = ajaxCall(links.prev);
+	//prev.onclick = ajaxCall(links.prev);
 	document.getElementById("navigation").appendChild(prev);
   }
   if(links.next){
 	var next = document.createElement("button");
 	next.text = "next";
-	next.onclick = ajaxCall(links.next);
+	//next.onclick = ajaxCall(links.next);
 	document.getElementById("navigation").appendChild(next);
   }
 }
