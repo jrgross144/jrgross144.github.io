@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Twitch Search Query</title>
+    <link rel="stylesheet" type="text/css" href="search_styling.css">
+    
+  </head>
+  <body>
+    <table id="main">
+      <tr>
+        <td>
+		  <input type="text" id="search">
+	      <button onclick="execSearch()">Search</button>
+	    </td>
+      </tr>
+      <tr>
+        <td>
+	      <div id="count">Total Results: </div>
+	      <div id="navigation"></div>
+			  <p id="test"></p>
+	      <table id="results">
+			<tr><td id="0"></td></tr>
+			<tr><td id="1"></td></tr>
+			<tr><td id="2"></td></tr>
+			<tr><td id="3"></td></tr>
+			<tr><td id="4"></td></tr>
+			<tr><td id="5"></td></tr>
+			<tr><td id="6"></td></tr>
+			<tr><td id="7"></td></tr>
+			<tr><td id="8"></td></tr>
+	      </table>
+	    </td>
+      </tr>
+    </table>
+    <script src="search_website.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+#main{
+  border: 2px groove black;
+  margin: auto;
+  width: 55%;
+  border-collapse: collapse;
+
+}
+
+tr{
+  border: 2px groove black;
+}
