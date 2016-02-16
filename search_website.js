@@ -1,4 +1,14 @@
 var data;
+$(document).ready(function(){
+	$("#search").keyup(function(event){
+	  if(event.keyCode==13){
+		  $("#srchbtn").click();
+	  }
+  }
+  );
+});
+  
+
 
 function execSearch(){
   
@@ -37,9 +47,12 @@ function display(result){
 	var elem = document.createElement("td");
 	elem.innerHTML += "<br><br><h2>"+stream.channel.game+"</h2>"
 	
+	var imgLink = document.createElement("a");
+	imgLink.href = stream.channel.url;
 	var img = document.createElement("img");
 	img.src = stream.preview.medium;
-	elem.appendChild(img);
+	imgLink.appendChild(img);
+	elem.appendChild(imgLink);
 	
 	elem.innerHTML += "<br>"+stream.channel.status+"<br>";
 	
