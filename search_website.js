@@ -1,5 +1,6 @@
 var data;
 $(document).ready(function(){
+	//checks if the enter key is pressed in the text box to execute search
 	$("#search").keyup(function(event){
 	  if(event.keyCode==13){
 		  $("#srchbtn").click();
@@ -9,10 +10,10 @@ $(document).ready(function(){
 });
   
 
-
+//formats the url for the ajax call based on the search parameters provided by the user
 function execSearch(){
   
-  var search = document.getElementById("search").value;
+  var search = $("#search").val();
   if(search){
 	
     var url = "https://api.twitch.tv/kraken/search/streams?q="+search;
@@ -22,11 +23,13 @@ function execSearch(){
   }
 }
 
+//calls the API and asks for streams using the search keywords
 function ajaxCall(url){
 	if(data){
-	  clean(document.getElementById("results"));
-	  clean(document.getElementById("navigation"));
-	  clean(document.getElementById("count"));
+		//cleans out the previous results, navigation buttons and the count of results
+	  clean($("#results"));
+	  clean($("#navigation"));
+	  clean($("#count"));
 	}
 	$.ajax({
       dataType: "json",
@@ -39,14 +42,16 @@ function ajaxCall(url){
 //displays the results of the search
 function display(result){
   data = result;
-  document.getElementById("count").innerHTML += "Total Results: "+data._total;
+  $("#count").innerHTML += "Total Results: "+data._total;
   setUpNav(data._links);
   for(var i=0; i<data.streams.length; i++){
+	//creates the box for the result information to be held in
 	var stream = data.streams[i];
 	var row = document.createElement("tr");
 	var elem = document.createElement("td");
 	elem.innerHTML += "<br><br><h2>"+stream.channel.game+"</h2>"
 	
+	//adds the image of the stream and makes it a link to the stream
 	var imgLink = document.createElement("a");
 	imgLink.href = stream.channel.url;
 	var img = document.createElement("img");
@@ -56,6 +61,7 @@ function display(result){
 	
 	elem.innerHTML += "<br>"+stream.channel.status+"<br>";
 	
+	//makes the streamer's name the link to the stream
 	var link = document.createElement("a");
 	link.href = stream.channel.url;
 	link.text = stream.channel.display_name;
@@ -63,7 +69,7 @@ function display(result){
 	
 	elem.innerHTML += "<br>Views: "+stream.channel.views+"<br>Followers: "+stream.channel.followers;
 	row.appendChild(elem);
-    document.getElementById("results").appendChild(row);
+    $("#results").append(row);
   }
 }
 
@@ -74,20 +80,20 @@ function setUpNav(links){
 	var text = document.createTextNode("Prev");
 	prev.appendChild(text);
 	prev.onclick = function(){ajaxCall(links.prev);};
-	document.getElementById("navigation").appendChild(prev);
+	$("#navigation").append(prev);
   }
   if(links.next){
 	var next = document.createElement("button");
 	var text = document.createTextNode("Next");
 	next.appendChild(text);
 	next.onclick = function(){ajaxCall(links.next)};
-	document.getElementById("navigation").appendChild(next);
+	$("#navigation").append(next);
   }
 }
 
 //gets called if the api call does not work
 function error(result){
-  document.getElementById("test").innerHTML += "failed";
+  $("#test").innerHTML += "failed";
 }
 
 //cleans out child elements
@@ -96,4 +102,9 @@ function clean(elem){
 	  while (temp.firstChild) {
         temp.removeChild(temp.firstChild);
 	  }
+}
+
+function formatNumbers(num){
+	//will format the number provided with , for easy reading of large numbers
+	return format;
 }

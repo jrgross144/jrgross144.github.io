@@ -12,7 +12,7 @@ Features left to add
 
 - [x] pressing enter in search box activates search
 
-- [ ] restructure to use JQuery more effectively
+- [x] restructure to use JQuery more effectively
 
 - [ ] change intial view of page before search to be of featured streams
 
