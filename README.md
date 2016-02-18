@@ -25,3 +25,5 @@ Features left to add
 - [ ] add more styling and color to make the page more appealing
 
 - [ ] add input sanitation to prevent odd behavior
+
+- [ ] add tests for input, mock JSON and integration tests

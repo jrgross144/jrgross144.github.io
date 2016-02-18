@@ -115,7 +115,6 @@ function dataPrep(stream){
 	row.appendChild(elem);
 	return row;
     $("#results").append(row);
-  }
 }
 
 //sets up the buttons to go to the next or previous set of 10
