@@ -19,7 +19,7 @@ $(document).ready(function(){
 //formats the url for the ajax call based on the search parameters provided by the user
 function execSearch(){
   
-  var search = document.getElementById("search").value;
+  var search = $("#search").val();
   if(search){
 	
     var url = "https://api.twitch.tv/kraken/search/streams?q="+search;
@@ -59,9 +59,10 @@ function initialView(result){
 //displays the results of the search
 function display(result){
   data = result;
-  document.getElementById("count").innerHTML += "Total Results: "+data._total;
+  $("#count").innerHTML += "Total Results: "+data._total;
   setUpNav(data._links);
   for(var i=0; i<data.streams.length; i++){
+	//creates the box for the result information to be held in
 	var stream = data.streams[i];
 	var row = dataPrep(stream);
     document.getElementById("results").appendChild(row);
@@ -94,6 +95,7 @@ function dataPrep(stream){
 	var elem = document.createElement("td");
 	elem.innerHTML += "<br><br><h2>"+stream.channel.game+"</h2>"
 	
+	//adds the image of the stream and makes it a link to the stream
 	var imgLink = document.createElement("a");
 	imgLink.href = stream.channel.url;
 	var img = document.createElement("img");
@@ -103,6 +105,7 @@ function dataPrep(stream){
 	
 	elem.innerHTML += "<br>"+stream.channel.status+"<br>";
 	
+	//makes the streamer's name the link to the stream
 	var link = document.createElement("a");
 	link.href = stream.channel.url;
 	link.text = stream.channel.display_name;
@@ -111,11 +114,31 @@ function dataPrep(stream){
 	elem.innerHTML += "<br>Views: "+stream.channel.views+"<br>Followers: "+stream.channel.followers;
 	row.appendChild(elem);
 	return row;
+    $("#results").append(row);
+  }
+}
+
+//sets up the buttons to go to the next or previous set of 10
+function setUpNav(links){
+  if(links.prev){
+	var prev = document.createElement("button");
+	var text = document.createTextNode("Prev");
+	prev.appendChild(text);
+	prev.onclick = function(){ajaxCall(links.prev);};
+	$("#navigation").append(prev);
+  }
+  if(links.next){
+	var next = document.createElement("button");
+	var text = document.createTextNode("Next");
+	next.appendChild(text);
+	next.onclick = function(){ajaxCall(links.next)};
+	$("#navigation").append(next);
+  }
 }
 
 //gets called if the api call does not work
 function error(result){
-  document.getElementById("test").innerHTML += "failed";
+  $("#test").innerHTML += "failed";
 }
 
 //cleans out child elements
