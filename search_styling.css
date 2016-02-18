@@ -9,3 +9,7 @@
 tr{
   border: 2px groove black;
 }
+
+h1{
+	text-align: center;
+}
