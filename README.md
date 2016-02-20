@@ -18,7 +18,7 @@ Features left to add
 
 - [ ] add padding in table around contents
 
-- [ ] center everything
+- [x] center everything
 
 - [ ] next and previous buttons at bottom of page as well as top
 
