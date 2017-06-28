@@ -41,6 +41,9 @@ function ajaxCall(url, Smethod){
 	$.ajax({
       dataType: "json",
       url: url,
+      headers: {
+        'Client-ID': 'jepst37dcox2l4wdxyyjcinjup9ods'
+      },
       success: Smethod,
       fail: error
     });
