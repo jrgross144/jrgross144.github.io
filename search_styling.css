@@ -1,11 +1,18 @@
+* {
+  font-family: Tahoma, Geneva, sans-serif;
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #main{
-  border: 2px groove black;
   margin: auto;
   width: 55%;
   border-collapse: collapse;
 
 }
 
-tr{
-  border: 2px groove black;
+h1{
+	text-align: center;
 }
