@@ -33,9 +33,8 @@ function execSearch(){
 //calls the API and asks for streams using the search keywords
 function ajaxCall(url, Smethod){
 	if(data){
-		//cleans out the previous results, navigation buttons and the count of results
+		//cleans out the previous results and the count of results
 	  clean(document.getElementById("results"));
-	  clean(document.getElementById("navigation"));
 	  clean(document.getElementById("count"));
 	}
 	$.ajax({
@@ -63,32 +62,11 @@ function initialView(result){
 function display(result){
   data = result;
   $("#count").innerHTML += "Total Results: "+data._total;
-  setUpNav(data._links);
   for(var i=0; i<data.streams.length; i++){
 	//creates the box for the result information to be held in
 	var stream = data.streams[i];
 	var row = dataPrep(stream);
     document.getElementById("results").appendChild(row);
-  }
-}
-
-//sets up the buttons to go to the next or previous set of 10
-function setUpNav(links){
-  //links to previous set of results
-  if(links.prev){
-	var prev = document.createElement("button");
-	var text = document.createTextNode("Prev");
-	prev.appendChild(text);
-	prev.onclick = function(){ajaxCall(links.prev, display);};
-	document.getElementById("navigation").appendChild(prev);
-  }
-  //links to next set of results
-  if(links.next){
-	var next = document.createElement("button");
-	var text = document.createTextNode("Next");
-	next.appendChild(text);
-	next.onclick = function(){ajaxCall(links.next, display)};
-	document.getElementById("navigation").appendChild(next);
   }
 }
 
@@ -118,24 +96,6 @@ function dataPrep(stream){
 	row.appendChild(elem);
 	return row;
     $("#results").append(row);
-}
-
-//sets up the buttons to go to the next or previous set of 10
-function setUpNav(links){
-  if(links.prev){
-	var prev = document.createElement("button");
-	var text = document.createTextNode("Prev");
-	prev.appendChild(text);
-	prev.onclick = function(){ajaxCall(links.prev);};
-	$("#navigation").append(prev);
-  }
-  if(links.next){
-	var next = document.createElement("button");
-	var text = document.createTextNode("Next");
-	next.appendChild(text);
-	next.onclick = function(){ajaxCall(links.next)};
-	$("#navigation").append(next);
-  }
 }
 
 //gets called if the api call does not work
